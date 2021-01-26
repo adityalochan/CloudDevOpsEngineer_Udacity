@@ -380,22 +380,20 @@ Resources:
       ListenerArn: !Ref 'Listener'
       Priority: 1
 
-
-
-    WebAppTargetGroup:
-      Type: AWS::ElasticLoadBalancingV2::TargetGroup
-      Properties:
-        HealthCheckIntervalSeconds: 10
-        HealthCheckPath: /
-        HealthCheckProtocol: HTTP
-        HealthCheckTimeoutSeconds: 8
-        HealthyThresholdCount: 2
-        Port: 8080
-        Protocol: HTTP
-        UnhealthyThresholdCount: 5
-        VpcId:
-          Fn::ImportValue:
-            Fn::Sub: "${EnvironmentName}-VPCID"
+  WebAppTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 10
+      HealthCheckPath: /
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 8
+      HealthyThresholdCount: 2
+      Port: 8080
+      Protocol: HTTP
+      UnhealthyThresholdCount: 5
+      VpcId:
+        Fn::ImportValue:
+          Fn::Sub: "${EnvironmentName}-VPCID"
 
 #
 #OUTPUT
