@@ -221,10 +221,6 @@ Resources:
       RouteTableId: !Ref PrivateRouteTable2
       SubnetId: !Ref PrivateSubnet2
 
-#  ---------------IAM ROLES------------
-#
-#
-#
 #Creating IAM roles that allows instance to use S3 bucket
 #Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
 #AWSTemplateFormatVersion: "2010-09-09"
@@ -264,8 +260,7 @@ Resources:
       Roles:
         -
           Ref: "RootRole"
-#------------------------------------------------
-#Adding security group
+
   LBSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -305,9 +300,6 @@ Resources:
           ToPort: 65535
           CidrIp: 0.0.0.0/0
 
-#--------------------------------------------------
-#
-#Launch Configuration
   WebAppLaunchConfig:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
@@ -322,7 +314,6 @@ Resources:
           aws s3 cp s3://udacity-demo-1/udacity.zip .
           unzip -o udacity.zip
       ImageId: ami-005bdb005fb00e791
-      KeyName: that-one
       SecurityGroups:
         - Ref: WebServerSecGroup
       InstanceType: t3.medium
@@ -395,7 +386,13 @@ Resources:
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
 
-#
 #OUTPUT
-#Outputs:
-  #Bonus points for useful outputs!
+Outputs:
+  WebAppLBDNSName:
+    Description: The DNSName of the backup load balancer
+    Value: !Sub
+      - http://${Domain}
+      - { Domain: !GetAtt WebAppLB.DNSName }
+    Export:
+      Name: !Sub ${EnvironmentName}-LB-DNS
+

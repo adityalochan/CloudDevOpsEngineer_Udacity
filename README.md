@@ -1,2 +1,13 @@
 # CloudDevOpsEngineer_Udacity
-Code commits include projects that were done as part of course Cloud DevOps Engineer Nanodegree by Google
+
+Contains all projects associated with CloudDevOps Nanodegree 
+
+Udagram project: 
+
+    Deploying high availability sever using cloudformation 
+    
+    Deployment command: 
+        $ ./create.sh udagram1 udagramservers.yml udagramservers.json
+    
+    Site URL: 
+        
