@@ -13,7 +13,7 @@ jobs:
       - run:
           name: echo my name
           command: |
-            echo "my name is" $Name
+            echo $Name # My name
 
   print_world:
     docker:
