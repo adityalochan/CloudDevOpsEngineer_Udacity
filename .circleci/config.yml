@@ -10,12 +10,12 @@ jobs:
     docker: # it uses the docker executor
       - image: circleci/node:13.8.0 # specifically, a docker image with ruby 2.4.1
     steps:
-      -run: echo "Hello"
+      - run: echo "Hello"
   print_world: # This is second job
     docker: # it uses the docker executor
       - image: circleci/node:13.8.0 # specifically, a docker image with ruby 2.4.1
     steps:
-      -run: echo "World"
+      - run: echo "World"
 workflows:
   # Name the workflow "welcome"
   welcome:
