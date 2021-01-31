@@ -21,9 +21,6 @@ jobs:
             echo $MY_NAME
 workflows:
   # Name the workflow "welcome"
-    test-env-variable:
-        jobs:
-          - print_world
   welcome:
     # Run the welcome/run job in its own container
     jobs:
