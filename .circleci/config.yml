@@ -10,16 +10,15 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run:
-          name: echo my name
-          command: |
-            echo $Name # My name
-
+      - run: echo hello
   print_world:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo world
+      - run:
+          name: echo ennvironment variable that is part of our project
+          command: |
+            echo $MY_NAME
 workflows:
   # Name the workflow "welcome"
   welcome:
