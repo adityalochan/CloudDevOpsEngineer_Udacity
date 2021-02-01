@@ -37,7 +37,7 @@ jobs:
           root: ~/
           paths:
             - output.txt
- test_command:
+  test_command:
     docker:
       - image: circleci/node:13.8.0
     steps:
