@@ -5,6 +5,10 @@ orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
+commands:
+  print_pipeline_id:
+    steps:
+      - run: echo ${CIRCLE_WORKFLOW_ID}
 jobs:
   print_hello:
     docker:
@@ -36,16 +40,10 @@ jobs:
  test_command:
     docker:
       - image: circleci/node:13.8.0
-    commands:
-      print_pipeline_id:
-        description: "A very simple command for demonstration purposes"
-        parameters:
-          to:
-            type: string
-            default: "Test Command"
-        steps:
-#          - run: echo << parameters.to >>
-          - run: echo $CIRCLE_WORKFLOW_ID
+    steps:
+      - attach_workspace:
+            at: ~/
+      - run: cat ~/output.txt
 
 workflows:
   # Name the workflow "welcome"
