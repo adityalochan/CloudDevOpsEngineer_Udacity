@@ -24,6 +24,26 @@ jobs:
           name: echo ennvironment variable that is part of our project
           command: |
             echo $MY_NAME
+  save_hello_world_output:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run:
+          name: print helloworld to a file
+          command: |
+            echo "text to output here" > output.txt
+
+  print_output_file:
+    docker:
+      - image: circleci/node:13.8.0
+      - attach_workspace:
+          at: /tmp/workspace
+    steps:
+      - run:
+          name: print helloworld to a file
+          command: |
+            cat output.txt
+
 workflows:
   # Name the workflow "welcome"
   welcome:
