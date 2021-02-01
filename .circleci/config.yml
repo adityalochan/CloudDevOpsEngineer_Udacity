@@ -33,14 +33,19 @@ jobs:
           root: ~/
           paths:
             - output.txt
-
-  print_output_file:
+ test_command:
     docker:
       - image: circleci/node:13.8.0
-    steps:
-      - attach_workspace:
-            at: ~/
-      - run: cat ~/output.txt
+    commands:
+      print_pipeline_id:
+        description: "A very simple command for demonstration purposes"
+        parameters:
+          to:
+            type: string
+            default: "Test Command"
+        steps:
+#          - run: echo << parameters.to >>
+          - run: echo $CIRCLE_WORKFLOW_ID
 
 workflows:
   # Name the workflow "welcome"
@@ -53,4 +58,4 @@ workflows:
             - print_hello
       - print_name
       - save_hello_world_output
-      - print_output_file
+      - test_command
