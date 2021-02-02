@@ -37,13 +37,11 @@ jobs:
           root: ~/
           paths:
             - output.txt
-  test_command:
+  test_pipeline:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - attach_workspace:
-            at: ~/
-      - run: cat ~/output.txt
+      - print_pipeline_id
 
 workflows:
   # Name the workflow "welcome"
