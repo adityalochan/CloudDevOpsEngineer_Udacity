@@ -54,4 +54,4 @@ workflows:
             - print_hello
       - print_name
       - save_hello_world_output
-      - test_command
+      - test_pipeline
