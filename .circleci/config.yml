@@ -66,3 +66,4 @@ workflows:
       - print_name
       - save_hello_world_output
       - test_pipeline
+      - my_job
